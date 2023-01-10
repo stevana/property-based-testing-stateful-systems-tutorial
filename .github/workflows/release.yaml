@@ -1,0 +1,76 @@
+# Based on https://vrom911.github.io/blog/github-actions-releases
+# See also: https://teddit.net/r/haskell/comments/yngcnu/anyone_have_an_uptodate_github_action_config_that/
+
+name: Release
+
+on:
+  # Trigger the workflow on the new 'v*' tag created.
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  create_release:
+    name: Create Github release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1.1.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: true
+          prerelease: false
+
+  build_artifact:
+    needs: [create_release]
+    name: ${{ matrix.os }}/GHC ${{ matrix.ghc }}/${{ github.ref }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        ghc:
+          - "9.0.2"
+        cabal: ["3.6.2.0"]
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set tag name
+        uses: olegtarasov/get-tag@v2.1.2
+        id: tag
+        with:
+          tagRegex: "v(.*)"
+
+      - name: Setup Haskell
+        uses: haskell/actions/setup@v2.0.1
+        id: setup-haskell-cabal
+        with:
+          ghc-version: ${{ matrix.ghc }}
+          cabal-version: ${{ matrix.cabal }}
+
+      - name: Cache ~/.cabal/store
+        uses: actions/cache@v3.0.11
+        with:
+          path: ${{ steps.setup-haskell-cabal.outputs.cabal-store }}
+          key: ${{ runner.os }}-${{ matrix.ghc }}-${{ hashFiles('cabal.project.freeze') }}
+
+      - name: Build binary
+        run: |
+          mkdir dist
+          cabal install exe:part5 --install-method=copy --overwrite-policy=always --installdir=dist
+          mv dist/part5 part5-${{ steps.tag.outputs.tag }}-${{ runner.os }}-ghc-${{ matrix.ghc }}
+
+      # - name: Upload release asset
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     files: part5-${{ steps.tag.outputs.tag }}-${{ runner.os }}-ghc-${{ matrix.ghc }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,125 @@
+cabal-version:      2.4
+name:               property-based-testing-stateful-systems-tutorial
+version:            0.0.0
+synopsis:
+  A tutorial about how to apply property-based testing to stateful systems.
+
+description:
+  See README at <https://github.com/stevana/property-based-testing-stateful-systems-tutorial#readme>
+
+homepage:
+  https://github.com/stevana/property-based-testing-stateful-systems-tutorial#readme
+
+bug-reports:
+  https://github.com/stevana/property-based-testing-stateful-systems-tutorial/issues
+
+license:            MIT
+license-file:       LICENSE
+author:             Stevan Andjelkovic and Daniel Gustafsson
+maintainer:         stevana@users.noreply.github.com
+copyright:          Copyright (c) 2022 Symbiont Inc; 2023 Stevan Andjelkovic, Daniel Gustafsson.
+category:           Testing
+extra-source-files:
+  CHANGELOG.md
+  LICENSE
+  README.md
+
+tested-with:        GHC ==9.0.2
+
+library
+  build-depends:    base ==4.15.1.0
+  hs-source-dirs:   src
+
+  -- GHC boot library dependencies:
+  -- (https://gitlab.haskell.org/ghc/ghc/-/blob/master/packages)
+  build-depends:
+    -- , bytestring
+    -- , containers
+    -- , directory
+    -- , stm
+    -- , text
+    -- , time
+    -- , transformers
+    -- , unix
+
+  -- Other dependencies:
+  build-depends:
+    -- , aeson
+    -- , async
+    -- , heaps
+    -- , http-client
+    -- , http-types
+    , HUnit
+    -- , microlens-platform
+    , QuickCheck
+    -- , random
+    -- , sqlite-simple
+    -- , tree-diff           ==0.0.2.1
+    -- , vector
+    -- , wai
+    -- , warp
+
+  exposed-modules:
+    Part01SMTesting
+    -- Part02ConcurrentSMTesting
+    -- Part03.Queue
+    -- Part03.QueueInterface
+    -- Part03.QueueTest
+    -- Part03.Service
+    -- Part03.ServiceTest
+    -- Part03SMContractTesting
+    -- Part04.CRC32
+    -- Part04.FSFI
+    -- Part04.LineariseWithFault
+    -- Part04FaultInjection
+    -- Part05.Agenda
+    -- Part05.AwaitingClients
+    -- Part05.ClientGenerator
+    -- Part05.Codec
+    -- Part05.Configuration
+    -- Part05.Debug
+    -- Part05.Deployment
+    -- Part05.ErrorReporter
+    -- Part05.Event
+    -- Part05.EventLoop
+    -- Part05.EventQueue
+    -- Part05.History
+    -- Part05.LibMain
+    -- Part05.Network
+    -- Part05.Options
+    -- Part05.Random
+    -- Part05.StateMachine
+    -- Part05.StateMachineDSL
+    -- Part05.Time
+    -- Part05.TimerWheel
+    -- Part05.ViewstampReplication.Machine
+    -- Part05.ViewstampReplication.Message
+    -- Part05.ViewstampReplication.State
+    -- Part05.ViewstampReplication.Test.ClientGenerator
+    -- Part05.ViewstampReplication.Test.Model
+    -- Part05SimulationTesting
+
+  default-language: Haskell2010
+  ghc-options:
+    -Wall -Wcompat -Widentities -Wincomplete-uni-patterns
+    -Wincomplete-record-updates -Wredundant-constraints
+    -Wnoncanonical-monad-instances -Wmissing-export-lists
+    -Wpartial-fields -Wmissing-deriving-strategies -fhide-source-paths
+    -Wunused-packages
+
+  if impl(ghc >=9.0)
+    ghc-options:
+      -Winvalid-haddock -Wunicode-bidirectional-format-characters
+      -Werror=unicode-bidirectional-format-characters
+
+  if impl(ghc >=9.2)
+    ghc-options:
+      -Wredundant-bang-patterns -Woperator-whitespace -Wimplicit-lift
+
+  if impl(ghc >=9.4)
+    ghc-options: -Wredundant-strictness-flags
+
+source-repository head
+  type:     git
+  location:
+    https://github.com/stevana/property-based-testing-stateful-systems-tutorial

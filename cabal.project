@@ -1,0 +1,12 @@
+packages: .
+
+with-compiler: ghc-9.0.2
+
+reject-unconstrained-dependencies: all
+
+constraints: QuickCheck +old-random
+
+package property-based-testing-stateful-systems-tutorial
+
+allow-older: *
+allow-newer: *
