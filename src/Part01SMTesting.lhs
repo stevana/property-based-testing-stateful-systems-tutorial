@@ -82,16 +82,10 @@ How it works
 Before we dive into the code lets try to visualise how what we just described
 fits together.
 
-Test case generation
---------------------
-
-A test case is merely a sequence of inputs to the SUT. We generate it using a
+A test case is merely a sequence of inputs to the SUT. We *generate* it using a
 seed and a max length parameter that bounds the length of the sequence.
 
 ![](../images/generator.svg){ width=400px }
-
-State machine testing
----------------------
 
 Once we generated the sequence we process it one input at the time, and apply
 the input to both the SUT and the state machine model, and then assert that the
@@ -99,11 +93,8 @@ outputs match, rinse and repeat with the updated state.
 
 ![](../images/sm-testing-small.jpg){ width=500px }
 
-Shrinking, when assertions fail
--------------------------------
-
 When an assertion fails, it's useful to try to present the minimal sequence of
-inputs that caused the failure. This process is sometimes called shrinking and
+inputs that caused the failure. This process is sometimes called *shrinking* and
 it works like this: start with the original sequence of inputs then form a tree
 where the children drops some of their parents inputs, like so:
 
@@ -120,11 +111,8 @@ that branch and instead check ` < i_2, i_3 >`. Lets say that does fail then we
 proceed trying if only `< i_2 >` or `< i_3 >` fail, if they don't then `< i_2,
 i_3 >` is the counterexample we present.
 
-Regression testing
-------------------
-
 If we find a sequence of inputs that causes a failure, we might want to save that
-test case as a regression test. It can be helpful to think of a regression test
+test case as a *regression test*. It can be helpful to think of a regression test
 as a path through a (different from the shrinking) tree:
 
 ![](../images/regression.svg){ width=400px }
@@ -133,11 +121,8 @@ Where we got some initial state $s_0$, then by applying input $i_0$ we get to
 some new state $s_1$ and so on. Note that this tree can be infinitely branching
 if the state space is infinite.
 
-Coverage
---------
-
 One common mistake that people make when doing PBT is to assume that the
-coverage is good, due to the randomness of test case generation.
+*coverage* is good, due to the randomness of test case generation.
 
 Corner case thinking associated with good unit tests still applies, e.g. make
 sure we try 0, -1, maxInt, etc, but instead of writing those unit tests we
