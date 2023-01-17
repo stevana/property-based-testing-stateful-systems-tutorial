@@ -4,8 +4,8 @@ Concurrent state machine testing with linearisability
 Motivation
 ----------
 
-In the [previous part](./docs/Part01SMTesting.md#readme) we saw how to test if
-a sequential (single-threaded) program respects some state machine specification.
+In the [previous part](./Part01SMTesting.md#readme) we saw how to test if a
+sequential (single-threaded) program respects some state machine specification.
 
 We did so by generating a random sequence of commands and then applied them one
 by one to both the real software under test (SUT), a counter, and the state
