@@ -34,9 +34,9 @@ library
   -- (https://gitlab.haskell.org/ghc/ghc/-/blob/master/packages)
   build-depends:
     -- , bytestring
-    -- , containers
+    , containers
     -- , directory
-    -- , stm
+    , stm
     -- , text
     -- , time
     -- , transformers
@@ -45,14 +45,14 @@ library
   -- Other dependencies:
   build-depends:
     -- , aeson
-    -- , async
+    , async
     -- , heaps
     -- , http-client
     -- , http-types
     , HUnit
     -- , microlens-platform
     , QuickCheck
-    -- , random
+    , random
     -- , sqlite-simple
     -- , tree-diff           ==0.0.2.1
     -- , vector
@@ -61,7 +61,7 @@ library
 
   exposed-modules:
     Part01SMTesting
-    -- Part02ConcurrentSMTesting
+    Part02ConcurrentSMTesting
     -- Part03.Queue
     -- Part03.QueueInterface
     -- Part03.QueueTest
