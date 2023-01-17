@@ -29,15 +29,15 @@ More concretely, we'll reuse both the counter SUT and model from previous part.
 
 However instead of generating a sequential program (a list of commands), we'll
 generate concurrent programs by generating lists of lists of commands where the
-outer list represents commands that should be executed concurrently.
+inner lists represents commands that should be executed concurrently.
 
 We'll use several threads to execute those concurrent program and collect a
 concurrent history of when each command started and finished executing on each
 thread.
 
-Linearisability checking is essentially to try to find a sequential path through
-the concurrent history that respects our sequential model, if we do we know that
-the concurrent execution is correct.
+Linearisability checking is essentially a way to try to find a sequential path
+through the concurrent history that respects our sequential model, if we do we
+know that the concurrent execution is correct.
 
 How it works
 ------------
