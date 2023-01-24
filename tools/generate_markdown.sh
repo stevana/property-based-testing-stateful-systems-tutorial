@@ -26,14 +26,14 @@ if [[ "${1:-}" == "--preview-html" ]]; then
   mkdir -p "${SCRATCH}-html-preview/docs"
 
   ${PANDOC} --from gfm --to html README.md > "${SCRATCH}-html-preview/README.html"
-  sed -i 's/.md/.html/' "${SCRATCH}-html-preview/README.html"
+  sed -i 's/.md/.html/g' "${SCRATCH}-html-preview/README.html"
 
   cp -r images/ "${SCRATCH}-html-preview/"
 
   for file in docs/*.md; do
       ${PANDOC} --from gfm --to html "${file}" > \
                 "${SCRATCH}-html-preview/docs/$(basename ${file} .md).html"
-      sed -i 's/.md/.html/' "${SCRATCH}-html-preview/docs/$(basename ${file} .md).html"
+      sed -i 's/.md/.html/g' "${SCRATCH}-html-preview/docs/$(basename ${file} .md).html"
   done
 
   echo "Preview unstyled HTML: ${SCRATCH}-html-preview/README.html"
