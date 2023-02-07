@@ -96,7 +96,7 @@ Table of contents
    linearisability](./docs/Part02ConcurrentSMTesting.md#readme)
 3. [Integration tests against state machine fakes and consumer-driven contract
    tests for the fakes](./docs/Part03SMContractTesting.md#readme)
-4. Fault-injection
+4. [Fault-injection](./docs/Part04FaultInjection.md#readme)
 5. Simulation testing
 
 Usage
