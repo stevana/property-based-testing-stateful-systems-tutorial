@@ -33,45 +33,45 @@ library
   -- GHC boot library dependencies:
   -- (https://gitlab.haskell.org/ghc/ghc/-/blob/master/packages)
   build-depends:
-    -- , bytestring
+    , bytestring
     , containers
-    -- , directory
+    , directory
     , stm
-    -- , text
+    , text
     -- , time
     -- , transformers
-    -- , unix
+    , unix
 
   -- Other dependencies:
   build-depends:
     -- , aeson
     , async
     -- , heaps
-    -- , http-client
-    -- , http-types
+    , http-client
+    , http-types
     , HUnit
     -- , microlens-platform
     , QuickCheck
     , random
-    -- , sqlite-simple
+    , sqlite-simple
     -- , tree-diff           ==0.0.2.1
-    -- , vector
-    -- , wai
-    -- , warp
+    , vector
+    , wai
+    , warp
 
   exposed-modules:
     Part01SMTesting
     Part02ConcurrentSMTesting
-    -- Part03.Queue
-    -- Part03.QueueInterface
-    -- Part03.QueueTest
-    -- Part03.Service
-    -- Part03.ServiceTest
-    -- Part03SMContractTesting
-    -- Part04.CRC32
-    -- Part04.FSFI
-    -- Part04.LineariseWithFault
-    -- Part04FaultInjection
+    Part03.Queue
+    Part03.QueueInterface
+    Part03.QueueTest
+    Part03.Service
+    Part03.ServiceTest
+    Part03SMContractTesting
+    Part04.CRC32
+    Part04.FSFI
+    Part04.LineariseWithFault
+    Part04FaultInjection
     -- Part05.Agenda
     -- Part05.AwaitingClients
     -- Part05.ClientGenerator
