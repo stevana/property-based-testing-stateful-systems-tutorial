@@ -112,7 +112,7 @@ data Fault = Full | Empty | ReadFail IOException | ReadSlow
   deriving stock Show
 ```
 
-We can now create a wrapper around our fake queue which inserts the right failure points depending which fault is injected. Note that a fault is only active in until it’s triggered.
+We can now create a wrapper around our fake queue which inserts the right failure points depending which fault is injected. Note that a fault is only active until triggered (and then removed with `removeFault`).
 
 ``` haskell
 faultyFakeQueue :: Int -> IO (FaultyFakeQueue a)
@@ -409,7 +409,7 @@ withRealQueueService io = do
   withService NoBug queue (io mgr)
 ```
 
-Finally we can write our sequential integratin tests with a fake and possibly faulty queue.
+Finally we can write our sequential integration tests with a fake and possibly faulty queue.
 
 ``` haskell
 unit_seqIntegrationTests :: Bug -> IO ()

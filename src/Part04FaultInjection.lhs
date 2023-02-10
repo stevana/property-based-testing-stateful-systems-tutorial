@@ -164,7 +164,7 @@ implementation bug perhaps), and slow read (simulating a GC or I/O pause).
 
 We can now create a wrapper around our fake queue which inserts the right
 failure points depending which fault is injected. Note that a fault is only
-active in until it's triggered.
+active until triggered (and then removed with `removeFault`).
 
 > faultyFakeQueue :: Int -> IO (FaultyFakeQueue a)
 > faultyFakeQueue size = do
@@ -420,7 +420,7 @@ fake one with faults for a "testing" deployment.
 >   mgr   <- newManager defaultManagerSettings
 >   withService NoBug queue (io mgr)
 
-Finally we can write our sequential integratin tests with a fake and possibly
+Finally we can write our sequential integration tests with a fake and possibly
 faulty queue.
 
 > unit_seqIntegrationTests :: Bug -> IO ()
